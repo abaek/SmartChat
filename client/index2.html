@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en" ng-app="chatApp"> <!--<![endif]-->
+<head>
+
+   <!--- Basic Page Needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Woo - Free Responsive HTML5/CSS3 Template</title>
+	<meta name="description" content="">  
+	<meta name="author" content="">
+
+   <!-- Mobile Specific Metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+   <link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="css/media-queries.css">
+   <link rel="stylesheet" href="css/animate.css">
+   <link rel="stylesheet" href="css/prettyPhoto.css">
+
+   <!-- Script
+   ================================================== -->
+	<script src="js/modernizr.js"></script>
+
+   <!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="favicon.png" >
+
+    <link type="text/css" rel="stylesheet" href="src/css/ChatUI.css"/>
+	<link type="text/css" title="chat-ui" rel="stylesheet" href="src/css/config.css"/>
+	<script src="src/js/jquery-1.11.1.min.js"></script>
+	<script src="src/js/ChatAPI_Lite.js"></script>
+	<script src="src/js/Chat_Transport_REST_httc.js"></script>
+	<script src="src/js/Chat_Transport_REST_webapi.js"></script>
+	<script src="src/js/ChatUI.js"></script>
+
+  <script src="src/js/angular.min.js"></script>
+  <script src="src/js/controller.js"></script>
+  <script src="src/js/x2js-v1.0.11/xml2json.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+  <script type="text/javascript" src="src/js/yelp/yelp.js"></script>
+
+</head>
+
+<body ng-controller="ChatAppController">
+
+   <div id="preloader">      
+      <div id="status">
+         <img src="images/preloader.gif" height="64" width="64" alt="">
+      </div>
+   </div>
+
+   <!-- Header
+   ================================================== -->
+   <header>
+
+      <div class="logo">
+         <a class="smoothscroll" href="#hero"><img alt="" src="images/logo.png"></a>
+      </div>
+
+      <nav id="nav-wrap">         
+         
+         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show Menu</a>
+	      <a class="mobile-btn" href="#" title="Hide navigation">Hide Menu</a>         
+
+         <ul id="nav" class="nav">
+            <li><a class="smoothscroll" href="#features">Features</a></li>
+	         <li><a class="smoothscroll" href="#pricing">Pricing</a></li>
+            <li><a class="smoothscroll" href="#screenshots">Screenshots</a></li>
+            <li><a class="smoothscroll" href="#testimonials">Testimonials</a></li>
+            <li><a class="smoothscroll" href="#subscribe">Subscribe</a></li>
+         </ul> <!-- end #nav -->
+
+      </nav> <!-- end #nav-wrap -->
+
+      <ul class="header-social">
+         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+      </ul>
+
+   </header> <!-- Header End -->
+
+
+   <!-- Chat API
+   ================================================== -->
+    <section id ="screenshots">
+
+        <div class="row">
+    	    <h1>Chat - REST API Test</h1>
+
+		    <!-- Debug controls -->
+		    <button class="chat-control start" style ="   font: 14px/24px 'montserrat-bold', sans-serif;
+   background: #11ABB0;
+   color: #fff;
+   display: inline-block;   
+	text-decoration: none;
+   letter-spacing: 0;   
+	padding: 12px 20px;
+	margin-bottom: 18px;
+   border: none;
+   cursor: pointer;
+   height: auto;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+
+   -webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+
+   border-radius: 3px;">Start Chat</button>
+		    <button class="chat-control end" DISABLED="DISABLED" style ="   font: 14px/24px 'montserrat-bold', sans-serif;
+   background: #11ABB0;
+   color: #fff;
+   display: inline-block;   
+	text-decoration: none;
+   letter-spacing: 0;   
+	padding: 12px 20px;
+	margin-bottom: 18px;
+   border: none;
+   cursor: pointer;
+   height: auto;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+
+   -webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+
+   border-radius: 3px;">End Chat</button>
+		    <br/>
+		    <!-- start: Template for Chat Widget -->
+		    <div id="demo_chat_XYZ" class="ChatUI">
+			    <div class="title">Chat Support</div>
+			    <div class="form">
+				   <!-- <label><span>First Name</span><input name="firstname"/></label>
+				    <label><span>Last Name</span><input name="lastname"/></label>
+				    <label><span>Nickname</span><input name="nickname"/></label>
+				    <label><span>Subject</span><input name="subject"/></label>
+				    <label><span>Email</span><input name="email"/></label> -->
+                    <br /> <br /><br /><br /><br /><br /><br />
+			    </div>
+			    <div class="transcript"></div>
+			    <div class="input-container">
+             <textarea class="input" ng-model="query" ng-change="loadSentence()" ng-trim="false" ng-keydown="keyPress($event)"></textarea>
+            </div>
+            <div id="suggestion">{{suggestion}}</div>
+            <button ng-click="addSentence(query)">add sentence</button>
+            <button ng-click="saveVocab()">Save Vocabulary</button>{{msg}}
+            <div class="isTyping"></div>
+            <div>{{dict}}</div>
+		    
+		    <!-- end: Template for Chat Widget -->
+
+
+		    <script>
+
+		        // Create instance of chat widget
+
+		        // HTTC Transport Version
+		        var oChatUI = new GenesysChatUI($, $("#demo_chat_XYZ"),
+
+				    Transport_REST_HTTC,
+				    {
+				        id: "515a4376-ac30-4ed2-801f-a876c0d56c93",
+				        dataURL: "http://localhost:8888/api/v2/chats/",
+				        context: "demo"
+				    }
+			    );
+
+		        // WebAPI Transport Version
+		        /*
+			    var oChatUI = new GenesysChatUI($, $("#demo_chat_XYZ"),
+
+				    Transport_REST_WebAPI,
+				    {
+					    id: "101",
+					    context: "demo",
+					    dataURL: "http://localhost:8080/eservices/api/v2/chats/",
+					    userData: {}
+				    }
+			    );
+			    */
+
+		        // Setup debug controls
+		        $(".chat-control.start").click(function () {
+
+		            oChatUI.startSession();
+		            //this.disabled = true;
+		            $(".chat-control.end")[0].disabled = false;
+		        });
+
+		        $(".chat-control.end").click(function () {
+
+		            oChatUI.endSession();
+		            //this.disabled = true;
+		            $(".chat-control.start")[0].disabled = false;
+		        });
+
+		    </script>
+            </div>
+        </div>
+    </section>
+
+
+
+
+   <!-- Java Script
+   ================================================== -->
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+
+   <script src="js/jquery.flexslider.js"></script>
+   <script src="js/waypoints.js"></script>
+   <script src="js/jquery.fittext.js"></script>
+   <script src="js/jquery.fitvids.js"></script>
+   <script src="js/imagelightbox.js"></script>
+   <script src="js/jquery.prettyPhoto.js"></script>   
+   <script src="js/main.js"></script>
+
+</body>
+
+</html>
