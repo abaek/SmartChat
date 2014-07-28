@@ -978,10 +978,3 @@ a#imagelightbox-close:hover, a#imagelightbox-close:focus { color: #11ABB0; }
 	}
 
 } 
-
-#suggestion{
-   font-size: 15px;
-   max-width: 100%;
-   line-height: 24px;
-   font-family: helvetica;
-}

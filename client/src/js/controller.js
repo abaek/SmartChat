@@ -3,12 +3,22 @@ chatApp.controller('ChatAppController', function($scope, $http, $location) {
   //LOAD PARSE AND VOCAB
   Parse.initialize("MWRSn7VKQRGSSQ9p64iXwjuXbqifQQ5tZ12kJzFe", "Zf0XMsZyzfsosuTDlpeORc9uHa8iQVzl0LJhVRIV");
   $scope.shortcuts = [['{wait}', 'Hello customer. We are current unavailable and will get back to you as soon as possible.'], ['{vacation}', 'Hello, thank you for reaching out to us, we will be available on January 3, 2015 when our business reseumes']];
+  $scope.messages = [{user: 'Andy', text: 'Welcome.'}];
+  $scope.username = 'anon';
+  $scope.userEdit = false;
   //$http.get('src/json/'+$routeParams[user]+'vocab.json')
-  $http.get('src/json/Andyvocab.json')
-  .then(function(res){
-    $scope.dict = res.data;
-    $scope.currentDict = $scope.dict;                
-  });
+  
+  // //$http.get('C://Users//Andy//Documents//2A//Programming//Genesys//gws-emulator-master//client//src//json//Andyvocab.json')
+  //$http.get('C://Users//Andy//Documents//2A//Programming//Genesys//gws-emulator-master//client//src//json//Andyvocab.json')
+  // $http.get('src/json/Andyvocab.json').then(function(res){
+  //   $scope.dict = res.data;
+  //   $scope.currentDict = $scope.dict;                
+  // });
+  // $scope.dict = {"the":{"book":{"is":{"red":{"1":null,"yo":{"6":null}},"blue":{"2":null}}},"lion":{"was":{"green":{"3":null},"orange":{"4":null,"but":{"no":{"1":null}}}}},"rain":{"is":{"snowing":{"1":null}}},"way":{"we":{"are":{"awesome":{"1":null}}}}},"hey":{"whatsup":{"4":null},"hows":{"it":{"going":{"man":{"2":null},"genesys":{"hackathon":{"1":null}}}},"life":{"2":null,"man":{"1":null}}},"hey":{"1":null},"genesys":{"hackathon":{"1":null}},"we're":{"team":{"57":{"Charles":{"1":null}}}}},"yo":{"hows":{"it":{"going":{"5":null}}},"whatsup":{"1":null,"man":{"1":null}}},"yolo":{"swag":{"man":{"1":null,"shawg":{"1":null}}}},"what":{"the":{"hell":{"1":null,"is":{"going":{"on":{"3":null}}}}}},"When":{"copying":{"an":{"array":{"in":{"javascript":{"to":{"another":{"array":{"1":null}}}}}}}},"you":{"are":{"copying":{"an":{"array":{"in":{"javascript":{"to":{"another":{"array":{"1":null}}}}}}}}}},"we":{"are":{"copying":{"an":{"array":{"in":{"javascript":{"to":{"another":{"array":{"1":null}}}}}}}}}}},"While":{"we":{"are":{"copying":{"an":{"array":{"in":{"javascript":{"to":{"another":{"array":{"1":null}}}}}}}}}}},"The":{"way":{"we":{"are":{"copying":{"an":{"array":{"in":{"javascript":{"to":{"another":{"array":{"1":null}}}}}}}}}}}},"i":{"heard":{"you":{"were":{"going":{"to":{"go":{"to":{"the":{"after":{"party":{"today":{"1":null}}}}}}}}}}}}};
+  // $scope.currentDict = $scope.dict;
+  $scope.dict = {};
+  $scope.currentDict = {};    
+  var socket = io();
 
   //AUTOCOMPLETE
   $scope.finishSentence = function (){
@@ -103,11 +113,29 @@ chatApp.controller('ChatAppController', function($scope, $http, $location) {
       $scope.addSentence($scope.query);
       $scope.currentDict = $scope.dict;
       $scope.suggestion = "";
-      //filterInput($scope.query);
+      socket.emit('chat message', $scope.query);
+      $scope.query = "";
+
+
+
+
+
     } else if (eve.which === 39){
       filterInput($scope.query);
     }
   }
+
+  socket.on('chat message', function(msg){
+    $scope.messages.push({user: "Andy", text: msg});
+    $('#messages').append($('<li>').text($scope.username + ': ' + msg));
+  });
+
+  $scope.usersOnline = [];
+  socket.emit('new user', 'anon');
+  socket.on('new user', function(numUsers){
+    //$scope.usersOnline.push();
+    $scope.numUsers = numUsers;
+  });
 
   function filterInput(sentence){
     if (sentence.indexOf("{weather}") > -1){
@@ -121,17 +149,50 @@ chatApp.controller('ChatAppController', function($scope, $http, $location) {
     });
     }
     for (var i = 0; i < $scope.shortcuts.length; i++){
-      if (sentence.indexOf($scope.shortcuts[0][0]) > -1){
-        $scope.query = sentence.replace($scope.shortcuts[0][0], $scope.shortcuts[0][1]);
+      if (sentence.indexOf($scope.shortcuts[i][0]) > -1){
+        $scope.query = sentence.replace($scope.shortcuts[i][0], $scope.shortcuts[i][1]);
       }
     }
   }
 
+  $scope.addShortcut = function(shortcutShort, shortcutLong){
+    $scope.shortcuts.push(['{'+shortcutShort+'}', shortcutLong]);
+  }
+
   $scope.saveVocab = function(){
-    $http.defaults.useXDomain = true;
-    $http.post('src/json/vocab.json', $scope.dict).then(function(data) {
-      $scope.msg = 'Data saved';
-    });
+  //   $http({
+  //   url: 'http://localhost:3000/client/src/json/Andyvocab.json',
+  //   method: "POST",
+  //   data: $scope.dict,
+  //   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+  // }).then(function(response) {
+  //       alert("success");
+  //   }, 
+  //   function(response) { // optional
+  //       alert("failed "+response);
+  //   }
+  //   );
+
+
+    // //$http.defaults.useXDomain = true;
+    // $http.post('src/json/Andyvocab.json', $scope.dict).then(function(data) {
+    //   $scope.msg = 'Data saved';
+    // });
+
+    $http.post("http://localhost:3000/dictionary", $scope.dict)
+    .success(function(data) {
+      alert("success");
+    })
+
+  }
+
+  $scope.changeUsername = function(){
+    $scope.userEdit = true;
+  }
+
+  $scope.setUsername = function(newUser){
+    $scope.username = newUser;
+    $scope.userEdit = false;
   }
 
   //API'S
