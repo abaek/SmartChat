@@ -1,16 +1,29 @@
 {
-  "name": "SmartChat",
-  "version": "0.0.1",
-  "description": "instant messaging site",
+  "name": "smartchat",
+  "version": "0.0.0",
+  "description": "Messenger site",
   "main": "server.js",
-  "dependencies": {
-    "cors": "^2.4.1",
-    "express": "^4.6.1",
-    "socket.io": "^1.0.6"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/abaek/SmartChat"
+    "url": "https://github.com/abaek/SmartChat.git"
   },
-  "author": "Andy Baek"
+  "keywords": [
+    "smartchat"
+  ],
+  "author": "Andy Baek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abaek/SmartChat/issues"
+  },
+  "homepage": "https://github.com/abaek/SmartChat",
+  "dependencies": {
+    "express": "^4.7.2",
+    "logfmt": "^1.1.2",
+    "cors": "^2.4.1",
+    "express": "^4.6.1",
+    "socket.io": "^1.0.6"
+  }
 }
