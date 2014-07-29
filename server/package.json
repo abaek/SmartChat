@@ -1,10 +1,16 @@
 {
-  "name": "socket-chat-example",
+  "name": "SmartChat",
   "version": "0.0.1",
-  "description": "my first socket.io app",
+  "description": "instant messaging site",
+  "main": "server.js",
   "dependencies": {
     "cors": "^2.4.1",
     "express": "^4.6.1",
     "socket.io": "^1.0.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abaek/SmartChat"
+  },
+  "author": "Andy Baek"
 }
