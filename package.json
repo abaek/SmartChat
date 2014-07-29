@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/abaek/SmartChat",
   "dependencies": {
-    "express": "^4.7.2",
-    "logfmt": "^1.1.2",
     "cors": "^2.4.1",
+    "ejs": "^1.0.0",
     "express": "^4.6.1",
+    "logfmt": "^1.1.2",
     "socket.io": "^1.0.6"
   }
 }
