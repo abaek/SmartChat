@@ -42,6 +42,4 @@ app.get('/', function(req, res) {
 
 var port = process.env.PORT || 5000;
 
-http.listen(port, function(){
-  console.log('listening on *:'+port);
-});
+http.listen(port, process.env.IP);
