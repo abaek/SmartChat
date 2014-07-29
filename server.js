@@ -20,9 +20,9 @@ io.on('connection', function(socket){
 });
 
 // app.use(cors());
+app.set('views', path.join(__dirname, ''));
 app.engine('html', require('ejs').renderFile);
-app.use('/client', express.static(__dirname + '/client'));
-app.set('views', path.join(__dirname, 'client'));
+app.use(express.static(path.join(__dirname, '')));
 
 app.get('/', function(req, res) {
   res.render('schat.html');
@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
 //     res.send(req.body);
 // });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 
 http.listen(port, function(){
   console.log('listening on *:'+port);
