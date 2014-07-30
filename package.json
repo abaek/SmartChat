@@ -8,17 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/abaek/SmartChat.git"
+    "url": "https://github.com/abaek/smartchat.git"
   },
   "keywords": [
     "smartchat"
   ],
-  "author": "Andy Baek",
-  "license": "ISC",
+  "author": "andy-baek",
   "bugs": {
-    "url": "https://github.com/abaek/SmartChat/issues"
+    "url": "https://github.com/abaek/smartchat/issues"
   },
-  "homepage": "https://github.com/abaek/SmartChat",
   "dependencies": {
     "cors": "^2.4.1",
     "ejs": "^1.0.0",

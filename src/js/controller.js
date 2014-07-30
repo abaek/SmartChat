@@ -1,10 +1,32 @@
-var chatApp = angular.module('chatApp', []);
-chatApp.controller('ChatAppController', function($scope, $http, $location) {
+var chatApp = angular.module('chatApp', ['ui.bootstrap']);
+chatApp.controller('ChatAppController', function($scope, $http, $location, $modal) {
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    var modalInstance = $modal.open({
+      templateUrl: 'usernamePick.html',
+      controller: ModalInstanceCtrl,
+      size: 'sm',
+      resolve: {}
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.username = selectedItem;
+    });
+
+
+
+
+
+
+
+
+
+
+
   //LOAD PARSE AND VOCAB
   Parse.initialize("MWRSn7VKQRGSSQ9p64iXwjuXbqifQQ5tZ12kJzFe", "Zf0XMsZyzfsosuTDlpeORc9uHa8iQVzl0LJhVRIV");
   $scope.shortcuts = [['{wait}', 'Hello customer. We are current unavailable and will get back to you as soon as possible.'], ['{vacation}', 'Hello, thank you for reaching out to us, we will be available on January 3, 2015 when our business reseumes']];
   $scope.messages = [{user: 'Andy', text: 'Welcome.'}];
-  $scope.username = 'anon';
   $scope.userEdit = false;
   //$http.get('src/json/'+$routeParams[user]+'vocab.json')
   
@@ -190,8 +212,7 @@ chatApp.controller('ChatAppController', function($scope, $http, $location) {
     $scope.userEdit = true;
   }
 
-  $scope.setUsername = function(newUser){
-    $scope.username = newUser;
+  $scope.setUsername = function(){
     $scope.userEdit = false;
   }
 
@@ -256,7 +277,7 @@ chatApp.controller('LoginController', function($scope, $http, $location) {
         success: function(user) {
           alert("Signup successful " + user.get('username'));
           $scope.username = user.get("username");
-          window.location.href = 'http://localhost:8888/client/Schat.html';
+          window.location.href = 'schat.html';
           //window.location.href = 'http://localhost:8888/client/index2.html?user=' + $scope.username;
       },
         error: function(user, error) {
@@ -288,7 +309,7 @@ chatApp.controller('LoginController', function($scope, $http, $location) {
     Parse.User.logIn(username, password, {
       success: function(user) {
         $scope.username = user.get("username");
-          window.location.href = 'http://localhost:8888/client/schat.html';
+        $location.path('schat.html')
           //window.location.href = 'http://localhost:8888/client/index2.html?user='+$scope.username;    
         },
       error: function(user, error) {
@@ -302,3 +323,20 @@ chatApp.controller('LoginController', function($scope, $http, $location) {
     Parse.User.logOut();
   }
 });
+
+
+
+
+
+
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+var ModalInstanceCtrl = function ($scope, $modalInstance) {
+  $scope.selected = {
+    username: ''
+  };
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.username);
+  };
+}

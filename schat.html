@@ -32,7 +32,7 @@
   ================================================== -->
   <link rel="shortcut icon" href="favicon.png" >
 
-    <link type="text/css" rel="stylesheet" href="src/css/ChatUI.css"/>
+  <link type="text/css" rel="stylesheet" href="src/css/ChatUI.css"/>
   <link type="text/css" title="chat-ui" rel="stylesheet" href="src/css/config.css"/>
 
   <script src="src/js/angular.min.js"></script>
@@ -42,6 +42,9 @@
   <script type="text/javascript" src="src/js/yelp/yelp.js"></script>
 
   <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
 
    <!-- Java Script
    ================================================== -->
@@ -56,9 +59,27 @@
 
 
 
+
+
+
 </head>
 
 <body ng-controller="ChatAppController">
+
+      <script type="text/ng-template" id="usernamePick.html">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <form ng-submit="ok()">
+          <div class="modal-header">
+              <h3 class="modal-title">Choose a username: 
+              <input ng-model="selected.username"></input>
+              <button class="btn btn-primary" ng-click="ok()">OK</button>
+              </h3> 
+          </div>
+        </form>
+            
+    </script>
+
+
 
    <div id="preloader">      
       <div id="status">
@@ -110,7 +131,7 @@
           Start typing and the machine will learn your vocabulary
         </div>
         <div id="usernameArea">
-          <input ng-show="userEdit" ng-model="newUsername"></input>
+          <span ng-show="userEdit" >Username: <input ng-model="username"></input></span>
           <span ng-show="!userEdit" class="userTag">{{username}}</span>
           <button ng-show="!userEdit" class = "userTag" ng-click="changeUsername()">Change username</button>
           <button ng-show="userEdit" ng-click="setUsername(newUsername)">Submit</button>
@@ -152,6 +173,7 @@
               {{shortcut[0]}} : {{shortcut[1]}}
             </div>
           </div>
+
 
         </div>
     </section>
