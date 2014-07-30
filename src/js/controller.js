@@ -40,7 +40,7 @@ chatApp.controller('ChatAppController', function($scope, $http, $location, $moda
   // $scope.currentDict = $scope.dict;
   $scope.dict = {};
   $scope.currentDict = {};    
-  var socket = io();
+  var socket = io.connect(window.location.hostname);
 
   //AUTOCOMPLETE
   $scope.finishSentence = function (){

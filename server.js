@@ -7,19 +7,21 @@ var path = require('path');
 
 var numUsers = 0;
 
-app.set('views', path.join(__dirname, ''));
+app.set('views', __dirname);
 app.engine('html', require('ejs').renderFile);
-app.use(express.static(path.join(__dirname, '')));
+app.use(express.static(__dirname));
 
 app.get('/', function(req, res) {
   res.render('schat.html');
 });
 
+io.set('heartbeat timeout', 5);
+
 io.on('connection', function(socket){
-	numUsers++;
+  numUsers++;
   //console.log('connected');
 
-	socket.on('new user', function(username){
+  socket.on('new user', function(username){
     io.emit('new user', numUsers);
   });
 
