@@ -5,10 +5,12 @@ var express = require('express'),
     server = http.Server(app),
     io = require('socket.io')(server);
 
+io.set('transports', ['xhr-polling']);
+io.set('polling duration', 10);
 
-  app.set('views', path.join(__dirname, ''));
-  app.set('view engine', require('ejs').renderFile);
-  app.use(express.static(path.join(__dirname, '')));
+app.set('views', path.join(__dirname, ''));
+app.set('view engine', require('ejs').renderFile);
+app.use(express.static(path.join(__dirname, '')));
 
 app.get('/', function(req, res) {
   res.render('schat.html');
