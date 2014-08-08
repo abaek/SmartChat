@@ -1,5 +1,5 @@
 # SmartChat - Chat Smart with Smart Chat
-### by [Andy Baek](https://github.com/elvinyung), [Rahul Chaudhary](https://github.com/rahulch95)
+### by [Andy Baek](https://github.com/abaek), [Rahul Chaudhary](https://github.com/rahulch95)
 
 ## Description
 **SmartChat** is a real-time chat site using Socket.IO written in AngularJS. Each user has their own vocabulary, that uses a machine learning sentence prediction algorithm to learn and predict their sentences based on what they've typed.
